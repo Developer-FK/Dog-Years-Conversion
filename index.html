@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<style>
+    select{
+
+        width: 100px;
+        height: 22px;
+        margin: 10px;
+    }
+    button{
+        padding: 8px 10px ;
+        background-color: tomato;
+        color: white;
+        display: block;
+        margin: 20px;
+        border: 1px solid tomato;
+        border-radius: 5px;
+        outline: none;
+    }
+</style>
+<body>
+
+    Years: <select name="years" id="years">
+       
+    </select>
+    <br>
+    Months: <select name="years" id="months">
+   
+    </select>
+ 
+
+    <button id="convert">
+        Convert
+    </button>
+
+   <script>
+       let body = document.querySelector('body')
+       let years = document.getElementById("years");
+       let months = document.getElementById('months');
+       let buttonC = document.getElementById('convert');
+       let head = document.createElement('h3');
+
+
+       for(let i = 0; i<=100; i++){
+
+            let option  = document.createElement('option')
+            option.textContent = i;
+            years.appendChild(option);
+       }
+
+       for(let i = 0; i<=11; i++){
+
+        let option  = document.createElement('option')
+        option.textContent = i;
+        months.appendChild(option);
+
+        }
+
+
+       buttonC.addEventListener('click', () =>{
+
+
+            let yearValue = Number(years.value);
+            let monthsValue =  Number( months.value);
+
+            let result;
+            let humanY;
+            let humanM;
+
+            
+            //console.log(yearValue, monthsValue);
+
+            if(yearValue < 2 && yearValue >= 0){
+
+                humanY = 10.5*yearValue;
+               // console.log("at 78", humanY)
+                humanY += 10.5/( 12/ monthsValue);
+                humanM = Math.round( (humanY - Math.floor(humanY)) * 12);
+                console.log(Math.floor(humanY) + " Years", humanM + " Months")
+                head.textContent = Math.floor(humanY) + " Years " + humanM + " Months";
+            }
+
+            else{
+
+                humanY = 10.5*(2);
+                humanY += 4*(yearValue -2);
+                humanY += 4/( 12/ monthsValue);
+                humanM = Math.round( (humanY - Math.floor(humanY)) * 12);
+                console.log(Math.floor(humanY) + " Years", humanM + " Months")
+                head.textContent = Math.floor(humanY) + " Years " + humanM + " Months";
+
+
+
+
+            }
+
+            body.append(head)
+
+       });
+
+   </script>
+</body>
+</html>
